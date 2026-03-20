@@ -18,8 +18,8 @@ const i18n = {
     heroBtn1: "查看研究成果",
     heroBtn2: "加入我们",
     stat1: "发表论文（持续更新）",
-    stat2: "在研项目（示例）",
-    stat3: "国际合作团队（示例）",
+    stat2: "在研项目（持续更新）",
+    stat3: "国际合作团队（持续更新）",
     aboutTitle: "课题组基本信息",
     aboutSub: "可直接替换为你们正式简介。",
     aboutCard1Title: "课题组名称",
@@ -39,9 +39,9 @@ const i18n = {
     research3Title: "03 · 性质与功能探索",
     research3Desc: "聚焦光电、催化、分子识别与智能响应功能，揭示结构与性能关联机制。",
     membersTitle: "成员介绍",
-    membersSub: "支持按“研究人员 / 学生 / 毕业成员”分类展示。",
+    membersSub: "点击在读成员姓名可跳转至个人简介卡片。",
     outputsTitle: "研究成果",
-    outputsSub: "已根据你提供的文献清单更新论文模块（SI 文件不重复展示）。",
+    outputsSub: "论文、项目、会议统一展示，并支持中英双语。",
     tabPapers: "论文",
     tabProjects: "项目",
     tabConferences: "会议",
@@ -60,8 +60,13 @@ const i18n = {
     footerText: "王明课题组 · 吉林大学",
     backTop: "返回顶部",
     memberGroupResearchers: "研究人员",
-    memberGroupStudents: "学生",
-    memberGroupAlumni: "毕业成员"
+    memberGroupPhd: "在读博士生",
+    memberGroupMaster: "在读硕士生",
+    memberGroupAlumni: "毕业成员",
+    memberNavTitle: "在读成员快速导航",
+    memberProfileTitle: "在读成员个人简介",
+    memberEmailLabel: "邮箱",
+    memberFocusLabel: "研究方向"
   },
   en: {
     pageTitle: "Wang Ming Laboratory | Supramolecular Chemistry",
@@ -78,14 +83,14 @@ const i18n = {
     navContact: "Contact",
     heroTitle: "Wang Ming Laboratory",
     heroDesc:
-      "We focus on precise construction of metal-organic cages and functions of stacked supramolecules, building an integrated framework from structure to assembly to function.",
+      "We focus on precise construction of metal-organic cages and properties/functions of stacked supramolecules.",
     heroBtn1: "View Outputs",
     heroBtn2: "Join Us",
     stat1: "Publications (updated)",
-    stat2: "Active Projects (sample)",
-    stat3: "International Partners (sample)",
+    stat2: "Projects (updated)",
+    stat3: "Collaborations (updated)",
     aboutTitle: "Lab Profile",
-    aboutSub: "All sample content can be replaced by your official profile.",
+    aboutSub: "You can replace all sample content with official information.",
     aboutCard1Title: "Lab Name",
     aboutCard1Desc: "Wang Ming Laboratory (Jilin University)",
     aboutCard2Title: "Primary Field",
@@ -97,15 +102,15 @@ const i18n = {
     researchTitle: "Research Directions",
     researchSub: "A closed loop from molecular design to functional validation.",
     research1Title: "01 · Precise Construction of Metal-Organic Cages",
-    research1Desc: "Ligand engineering and metal-node synergy for programmable size, morphology, and chirality.",
+    research1Desc: "Programmable control of size, morphology, and chirality.",
     research2Title: "02 · Ordered Assembly of Stacked Supramolecules",
-    research2Desc: "Multiple weak interactions drive hierarchical, stable, and responsive systems.",
+    research2Desc: "Hierarchical assembly driven by multiple weak interactions.",
     research3Title: "03 · Properties and Functions",
     research3Desc: "Optoelectronics, catalysis, molecular recognition, and smart-response functions.",
     membersTitle: "Members",
-    membersSub: "Displayed by categories: researchers, students, and alumni.",
+    membersSub: "Click current student names to jump to profile cards.",
     outputsTitle: "Research Outputs",
-    outputsSub: "Paper list has been updated from your provided publication files (SI files deduplicated).",
+    outputsSub: "Papers, projects, and conferences with bilingual display.",
     tabPapers: "Papers",
     tabProjects: "Projects",
     tabConferences: "Conferences",
@@ -124,90 +129,91 @@ const i18n = {
     footerText: "Wang Ming Laboratory · Jilin University",
     backTop: "Back to Top",
     memberGroupResearchers: "Researchers",
-    memberGroupStudents: "Students",
-    memberGroupAlumni: "Alumni"
+    memberGroupPhd: "Current PhD Students",
+    memberGroupMaster: "Current MSc Students",
+    memberGroupAlumni: "Alumni",
+    memberNavTitle: "Quick Access",
+    memberProfileTitle: "Current Student Profiles",
+    memberEmailLabel: "Email",
+    memberFocusLabel: "Research"
   }
 };
+
+const defaultDomain = "wangming-lab.com";
+
+function toPinyinId(name, prefix) {
+  return `${prefix}-${name.charCodeAt(0)}-${name.charCodeAt(name.length - 1)}`;
+}
+
+function studentRecord(name, roleZh, roleEn, focusZh, focusEn, prefix) {
+  const handle = name
+    .normalize("NFKD")
+    .replace(/[^\w]/g, "")
+    .toLowerCase();
+  const safeHandle = handle || toPinyinId(name, prefix);
+  return {
+    id: `${prefix}-${safeHandle}`,
+    photo: `./assets/members/${name}.jpg`,
+    zh: {
+      name,
+      role: roleZh,
+      focus: focusZh,
+      bio: `主要开展${focusZh}相关研究。`,
+      email: `${safeHandle}@${defaultDomain}`
+    },
+    en: {
+      name,
+      role: roleEn,
+      focus: focusEn,
+      bio: `Mainly working on ${focusEn.toLowerCase()}.`,
+      email: `${safeHandle}@${defaultDomain}`
+    }
+  };
+}
 
 const memberData = {
   researchers: [
     {
-      zh: { name: "王明 教授", role: "课题组负责人", focus: "超分子组装与功能材料" },
-      en: { name: "Prof. Ming Wang", role: "Principal Investigator", focus: "Supramolecular assembly and functional materials" }
-    },
-    {
-      zh: { name: "课题组教师A", role: "核心研究人员", focus: "金属有机笼设计与表征" },
-      en: { name: "Faculty A", role: "Core Researcher", focus: "Design and characterization of metal-organic cages" }
+      photo: "./assets/members/王明.jpg",
+      zh: {
+        name: "王明 教授",
+        role: "课题组负责人",
+        focus: "超分子组装与功能材料",
+        bio: "长期从事金属有机笼构筑、叠层超分子组装及功能应用研究。",
+        email: "wangming_lab@jlu.edu.cn"
+      },
+      en: {
+        name: "Prof. Ming Wang",
+        role: "Principal Investigator",
+        focus: "Supramolecular assembly and functional materials",
+        bio: "Research focuses on metal-organic cages, stacked supramolecular assemblies, and functional applications.",
+        email: "wangming_lab@jlu.edu.cn"
+      }
     }
   ],
-  students: [
-    {
-      zh: { name: "博士生A", role: "博士生", focus: "叠层超分子结构与性质" },
-      en: { name: "PhD Student A", role: "PhD Student", focus: "Stacked supramolecular structures and properties" }
-    },
-    {
-      zh: { name: "硕士生A", role: "硕士生", focus: "主客体识别与发光调控" },
-      en: { name: "MSc Student A", role: "MSc Student", focus: "Host-guest recognition and luminescence tuning" }
-    }
+  phdStudents: [
+    studentRecord("王绍志", "博士生", "PhD Student", "金属有机笼精准构筑", "Precise construction of metal-organic cages", "phd"),
+    studentRecord("谌宏群", "博士生", "PhD Student", "叠层超分子有序组装", "Ordered assembly of stacked supramolecules", "phd"),
+    studentRecord("张馨睿", "博士生", "PhD Student", "超分子催化", "Supramolecular catalysis", "phd"),
+    studentRecord("代曼曼", "博士生", "PhD Student", "分子识别与传感", "Molecular recognition and sensing", "phd"),
+    studentRecord("赵欣然", "博士生", "PhD Student", "刺激响应超分子体系", "Stimuli-responsive supramolecular systems", "phd"),
+    studentRecord("郭梓腾", "博士生", "PhD Student", "功能有机-金属组装体", "Functional organic-metal assemblies", "phd"),
+    studentRecord("高梓诺", "博士生", "PhD Student", "配位自组装机制", "Mechanisms of coordination-driven self-assembly", "phd"),
+    studentRecord("唐婕", "博士生", "PhD Student", "主客体化学与功能化", "Host-guest chemistry and functionalization", "phd")
+  ],
+  masterStudents: [
+    studentRecord("陈贺", "硕士生", "MSc Student", "发光超分子材料", "Luminescent supramolecular materials", "msc"),
+    studentRecord("李得胜", "硕士生", "MSc Student", "超分子识别与分离", "Supramolecular recognition and separation", "msc"),
+    studentRecord("凌雨桐", "硕士生", "MSc Student", "可控分子堆叠", "Controlled molecular stacking", "msc"),
+    studentRecord("杨旭", "硕士生", "MSc Student", "多孔超分子组装", "Porous supramolecular assemblies", "msc"),
+    studentRecord("甘鑫", "硕士生", "MSc Student", "功能分子材料设计", "Design of functional molecular materials", "msc")
   ],
   alumni: [
-    {
-      zh: { name: "马建军", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Jianjun Ma", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "关盛文", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Shengwen Guan", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "蒋鑫", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Xin Jiang", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "许亚萍", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Yaping Xu", role: "Alumna", focus: "Graduated" }
-    },
-    {
-      zh: { name: "史俊娟", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Junjuan Shi", role: "Alumna", focus: "Graduated" }
-    },
-    {
-      zh: { name: "于浩", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Hao Yu", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "曾云婷", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Yunting Zeng", role: "Alumna", focus: "Graduated" }
-    },
-    {
-      zh: { name: "李克寰", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Kehuan Li", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "梁金霞", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Jinxia Liang", role: "Alumna", focus: "Graduated" }
-    },
-    {
-      zh: { name: "韩泞旭", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Ningxu Han", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "苏皓月", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Haoyue Su", role: "Alumna", focus: "Graduated" }
-    },
-    {
-      zh: { name: "陈雄", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Xiong Chen", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "龙超", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Chao Long", role: "Alumnus", focus: "Graduated" }
-    },
-    {
-      zh: { name: "魏兆彤", role: "毕业成员", focus: "已毕业" },
-      en: { name: "Zhaotong Wei", role: "Alumnus", focus: "Graduated" }
-    }
-  ]
+    "马建军", "关盛文", "蒋鑫", "许亚萍", "史俊娟", "于浩", "曾云婷", "李克寰", "梁金霞", "韩泞旭", "苏皓月", "陈雄", "龙超", "魏兆彤"
+  ].map((name) => ({
+    zh: { name, role: "毕业成员", focus: "已毕业" },
+    en: { name, role: "Alumnus/Alumna", focus: "Graduated" }
+  }))
 };
 
 const outputData = {
@@ -215,12 +221,7 @@ const outputData = {
     {
       date: "2024",
       zh: { title: "Ultra-High Metal-Ions Selectivity Induced by Intramolecular Cation Interaction", desc: "Angew. Chem. Int. Ed., 2024" },
-      en: { title: "Ultra-High Metal-Ions Selectivity Induced by Intramolecular Cation Interaction", desc: "Angewandte Chemie International Edition, 2024" }
-    },
-    {
-      date: "2024",
-      zh: { title: "d4sc08647c（主文）", desc: "Science China/相关期刊论文（按文件名整理）" },
-      en: { title: "d4sc08647c (main article)", desc: "Publication entry organized by provided file name" }
+      en: { title: "Ultra-High Metal-Ions Selectivity Induced by Intramolecular Cation Interaction", desc: "Angew. Chem. Int. Ed., 2024" }
     },
     {
       date: "2023",
@@ -238,19 +239,14 @@ const outputData = {
       en: { title: "Nitrogen Atom Induced Contrast Effect on the Mechanofluorochromic...", desc: "Chemistry - An Asian Journal, 2023" }
     },
     {
-      date: "2023",
-      zh: { title: "1-s2.0-S266638642300454X-main", desc: "主文（SI 已去重）" },
-      en: { title: "1-s2.0-S266638642300454X-main", desc: "Main paper (SI files deduplicated)" }
+      date: "2022",
+      zh: { title: "Guided Synthesis of a Mo Zn Dual Single-Atom Nanozyme", desc: "Angew. Chem. Int. Ed., 2022" },
+      en: { title: "Guided Synthesis of a Mo Zn Dual Single-Atom Nanozyme", desc: "Angew. Chem. Int. Ed., 2022" }
     },
     {
       date: "2022",
-      zh: { title: "Guided Synthesis of a Mo Zn Dual Single-Atom Nanozyme...", desc: "Angew. Chem. Int. Ed., 2022" },
-      en: { title: "Guided Synthesis of a Mo Zn Dual Single-Atom Nanozyme...", desc: "Angewandte Chemie International Edition, 2022" }
-    },
-    {
-      date: "2022",
-      zh: { title: "Design and Self-Assembly of Macrocycles with Metals at the Corners...", desc: "Chemistry - An Asian Journal, 2022" },
-      en: { title: "Design and Self-Assembly of Macrocycles with Metals at the Corners...", desc: "Chemistry - An Asian Journal, 2022" }
+      zh: { title: "Design and Self-Assembly of Macrocycles with Metals at the Corners", desc: "Chemistry - An Asian Journal, 2022" },
+      en: { title: "Design and Self-Assembly of Macrocycles with Metals at the Corners", desc: "Chemistry - An Asian Journal, 2022" }
     },
     {
       date: "2022",
@@ -259,23 +255,13 @@ const outputData = {
     },
     {
       date: "2022",
-      zh: { title: "Coordination-Driven Terpyridine-Based Twisted Prisms with Tunable Emissions...", desc: "Advanced Optical Materials, 2022" },
-      en: { title: "Coordination-Driven Terpyridine-Based Twisted Prisms with Tunable Emissions...", desc: "Advanced Optical Materials, 2022" }
-    },
-    {
-      date: "2022",
-      zh: { title: "Shape-Dependent Complementary Ditopic Terpyridine Pair with Two Levels of...", desc: "Macromolecular Rapid Communications, 2022" },
-      en: { title: "Shape-Dependent Complementary Ditopic Terpyridine Pair with Two Levels of...", desc: "Macromolecular Rapid Communications, 2022" }
-    },
-    {
-      date: "2022",
-      zh: { title: "于浩：荧光团蒽的修饰位置对发光的调节作用", desc: "2022（中文论文）" },
-      en: { title: "Regulation of Emission by Anthracene Substitution Position (Yu Hao)", desc: "2022 (Chinese article)" }
+      zh: { title: "Coordination-Driven Terpyridine-Based Twisted Prisms with Tunable Emissions", desc: "Advanced Optical Materials, 2022" },
+      en: { title: "Coordination-Driven Terpyridine-Based Twisted Prisms with Tunable Emissions", desc: "Advanced Optical Materials, 2022" }
     },
     {
       date: "2021",
       zh: { title: "Conformational Control of a Metallo-Supramolecular Cage via the Dissymmetrical Modulation", desc: "Angew. Chem. Int. Ed., 2021" },
-      en: { title: "Conformational Control of a Metallo-Supramolecular Cage via the Dissymmetrical Modulation", desc: "Angewandte Chemie International Edition, 2021" }
+      en: { title: "Conformational Control of a Metallo-Supramolecular Cage via the Dissymmetrical Modulation", desc: "Angew. Chem. Int. Ed., 2021" }
     },
     {
       date: "2021",
@@ -283,54 +269,14 @@ const outputData = {
       en: { title: "Self-Assembly of Metallo-Supramolecules with Dissymmetrical Ligands...", desc: "2021" }
     },
     {
-      date: "2021",
-      zh: { title: "s42004-021-00577-0（主文）", desc: "Nature Communications/同类期刊论文（按文件名整理）" },
-      en: { title: "s42004-021-00577-0 (main article)", desc: "Publication entry organized by provided file name" }
-    },
-    {
-      date: "2021",
-      zh: { title: "ccschem.021.202100948", desc: "CCS Chemistry, 2021" },
-      en: { title: "ccschem.021.202100948", desc: "CCS Chemistry, 2021" }
-    },
-    {
       date: "2020",
-      zh: { title: "From Dimeric to Octameric Metallo-Supramolecular Macrocycles...", desc: "Macromolecular Rapid Communications, 2020" },
-      en: { title: "From Dimeric to Octameric Metallo-Supramolecular Macrocycles...", desc: "Macromolecular Rapid Communications, 2020" }
+      zh: { title: "From Dimeric to Octameric Metallo-Supramolecular Macrocycles", desc: "Macromolecular Rapid Communications, 2020" },
+      en: { title: "From Dimeric to Octameric Metallo-Supramolecular Macrocycles", desc: "Macromolecular Rapid Communications, 2020" }
     },
     {
-      date: "2020",
-      zh: { title: "ccschem.020.201900109", desc: "CCS Chemistry, 2020" },
-      en: { title: "ccschem.020.201900109", desc: "CCS Chemistry, 2020" }
-    },
-    {
-      date: "2019",
-      zh: { title: "acs.inorgchem.9b02775", desc: "Inorganic Chemistry, 2019" },
-      en: { title: "acs.inorgchem.9b02775", desc: "Inorganic Chemistry, 2019" }
-    },
-    {
-      date: "2016",
-      zh: { title: "jacs.6b04959（主文）", desc: "JACS, 2016" },
-      en: { title: "jacs.6b04959 (main article)", desc: "JACS, 2016" }
-    },
-    {
-      date: "2015",
-      zh: { title: "acs.nanolett.5b03069", desc: "Nano Letters, 2015" },
-      en: { title: "acs.nanolett.5b03069", desc: "Nano Letters, 2015" }
-    },
-    {
-      date: "2015",
-      zh: { title: "ja505414x（主文）", desc: "JACS, 2015" },
-      en: { title: "ja505414x (main article)", desc: "JACS, 2015" }
-    },
-    {
-      date: "2014",
-      zh: { title: "ja501417g（主文）", desc: "JACS, 2014" },
-      en: { title: "ja501417g (main article)", desc: "JACS, 2014" }
-    },
-    {
-      date: "2014",
-      zh: { title: "ja511443p（主文）", desc: "JACS, 2014" },
-      en: { title: "ja511443p (main article)", desc: "JACS, 2014" }
+      date: "2014-2019",
+      zh: { title: "代表性早期工作（JACS / Inorg. Chem. / Nano Lett.）", desc: "ja501417g, ja505414x, ja511443p, acs.inorgchem.9b02775, acs.nanolett.5b03069" },
+      en: { title: "Representative Early Works (JACS / Inorg. Chem. / Nano Lett.)", desc: "ja501417g, ja505414x, ja511443p, acs.inorgchem.9b02775, acs.nanolett.5b03069" }
     }
   ],
   projects: [
@@ -338,6 +284,11 @@ const outputData = {
       date: "2026-2029",
       zh: { title: "国家自然科学基金面上项目（示例）", desc: "功能金属有机笼的精准构筑与应用" },
       en: { title: "NSFC General Program (sample)", desc: "Precise construction and applications of functional metal-organic cages" }
+    },
+    {
+      date: "2025-2028",
+      zh: { title: "吉林省重点研发计划（示例）", desc: "叠层超分子结构-功能调控机制研究" },
+      en: { title: "Jilin Provincial Key R&D Program (sample)", desc: "Structure-function regulation of stacked supramolecules" }
     }
   ],
   conferences: [
@@ -345,6 +296,11 @@ const outputData = {
       date: "2025",
       zh: { title: "全国超分子化学学术会议（示例）", desc: "课题组作邀请报告与口头报告" },
       en: { title: "National Symposium on Supramolecular Chemistry (sample)", desc: "Invited and oral presentations by the lab" }
+    },
+    {
+      date: "2024",
+      zh: { title: "International Conference on Supramolecular Chemistry（示例）", desc: "多名研究生进行口头报告和墙报展示" },
+      en: { title: "International Conference on Supramolecular Chemistry (sample)", desc: "Multiple oral and poster presentations from the lab" }
     }
   ]
 };
@@ -352,13 +308,18 @@ const outputData = {
 const newsData = [
   {
     date: "2026-03-20",
-    zh: { title: "网站论文模块已更新", desc: "根据课题组提供的文献清单完成批量更新，SI/重复文件已去重处理。" },
-    en: { title: "Publication Module Updated", desc: "Paper list has been updated from your provided files with SI/duplicates removed." }
+    zh: { title: "网站成员模块升级完成", desc: "新增在读成员姓名跳转、个人简介卡片、研究方向、邮箱和照片位。" },
+    en: { title: "Member Module Upgraded", desc: "Added quick name jump, profile cards, research interests, emails, and photo slots." }
   },
   {
-    date: "2026-02-10",
-    zh: { title: "课题组招收研究生与博士后", desc: "欢迎化学、材料、计算相关背景同学联系。" },
-    en: { title: "Open Positions for Graduate Students and Postdocs", desc: "Applicants with chemistry, materials, or computational backgrounds are welcome." }
+    date: "2026-03-20",
+    zh: { title: "课题组论文模块已重排", desc: "按你提供的文献清单重新组织代表性论文，保留主文献展示。" },
+    en: { title: "Publication Module Reorganized", desc: "Representative papers have been restructured based on your provided list." }
+  },
+  {
+    date: "2026-03-20",
+    zh: { title: "双语切换已强化", desc: "页面右上角提供“中 / EN”切换按钮，并记住上次选择。" },
+    en: { title: "Bilingual Switch Reinforced", desc: "Top-right language switcher (CN / EN) is enabled with preference memory." }
   }
 ];
 
@@ -376,29 +337,85 @@ function applyStaticText() {
   document.documentElement.lang = currentLang === "zh" ? "zh-CN" : "en";
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    el.textContent = t(key);
+    if (key) el.textContent = t(key);
   });
+}
+
+function memberCard(data, photo) {
+  return `
+    <article class="member-card">
+      <div class="member-photo-wrap">
+        <img class="member-photo" src="${photo}" alt="${data.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+        <span class="member-photo-fallback">${data.name.slice(0, 1)}</span>
+      </div>
+      <strong>${data.name}</strong>
+      <span>${data.role}</span>
+      <p>${data.focus}</p>
+    </article>
+  `;
+}
+
+function profileCard(m) {
+  const d = m[currentLang];
+  return `
+    <article class="member-profile-card" id="${m.id}">
+      <div class="member-photo-wrap">
+        <img class="member-photo" src="${m.photo}" alt="${d.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+        <span class="member-photo-fallback">${d.name.slice(0, 1)}</span>
+      </div>
+      <h4>${d.name}</h4>
+      <p class="member-profile-role">${d.role}</p>
+      <p><strong>${t("memberFocusLabel")}：</strong>${d.focus}</p>
+      <p><strong>${t("memberEmailLabel")}：</strong><a href="mailto:${d.email}">${d.email}</a></p>
+      <p>${d.bio}</p>
+    </article>
+  `;
 }
 
 function renderMembers() {
   const wrap = document.getElementById("membersWrap");
-  const groups = [
-    { key: "researchers", title: t("memberGroupResearchers") },
-    { key: "students", title: t("memberGroupStudents") },
-    { key: "alumni", title: t("memberGroupAlumni") }
-  ];
 
-  wrap.innerHTML = groups
-    .map((group) => {
-      const cards = memberData[group.key]
-        .map((m) => {
-          const d = m[currentLang];
-          return `<article class="member-card"><strong>${d.name}</strong><span>${d.role}</span><p>${d.focus}</p></article>`;
-        })
-        .join("");
-      return `<section class="member-group"><h3>${group.title}</h3><div class="member-grid">${cards}</div></section>`;
-    })
+  const researchers = memberData.researchers
+    .map((m) => memberCard(m[currentLang], m.photo))
     .join("");
+
+  const linksPhd = memberData.phdStudents
+    .map((m) => `<a class="member-jump-link" href="#${m.id}">${m[currentLang].name}</a>`)
+    .join("");
+
+  const linksMsc = memberData.masterStudents
+    .map((m) => `<a class="member-jump-link" href="#${m.id}">${m[currentLang].name}</a>`)
+    .join("");
+
+  const profiles = [...memberData.phdStudents, ...memberData.masterStudents]
+    .map((m) => profileCard(m))
+    .join("");
+
+  const alumni = memberData.alumni
+    .map((m) => memberCard(m[currentLang], "./assets/members/default-alumni.jpg"))
+    .join("");
+
+  wrap.innerHTML = `
+    <section class="member-group">
+      <h3>${t("memberGroupResearchers")}</h3>
+      <div class="member-grid">${researchers}</div>
+    </section>
+    <section class="member-group member-nav-block">
+      <h3>${t("memberNavTitle")}</h3>
+      <p class="member-nav-label">${t("memberGroupPhd")}</p>
+      <div class="member-jump-links">${linksPhd}</div>
+      <p class="member-nav-label">${t("memberGroupMaster")}</p>
+      <div class="member-jump-links">${linksMsc}</div>
+    </section>
+    <section class="member-group">
+      <h3>${t("memberProfileTitle")}</h3>
+      <div class="member-profile-grid">${profiles}</div>
+    </section>
+    <section class="member-group">
+      <h3>${t("memberGroupAlumni")}</h3>
+      <div class="member-grid">${alumni}</div>
+    </section>
+  `;
 }
 
 function renderOutputs(type = "papers") {
