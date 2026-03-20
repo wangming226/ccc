@@ -269,6 +269,26 @@ const MEMBER_DATA = {
 
 const PAPER_DATA = [
   {
+    id: "paper-2025-01",
+    date: "2025",
+    zh: {
+      title: "Configurational Control of Low-Symmetry Heteroleptic Metal Organic Cages with Asymmetric Ligands",
+      journal: "Chemical Science, 2025",
+      authors: "Wang Lab et al.",
+      abstract: "围绕不对称配体参与的低对称异配位金属有机笼，发展构型可控的精准构筑策略。",
+      keywords: "异配位笼；低对称结构；构型调控"
+    },
+    en: {
+      title: "Configurational Control of Low-Symmetry Heteroleptic Metal Organic Cages with Asymmetric Ligands",
+      journal: "Chemical Science, 2025",
+      authors: "Wang Lab et al.",
+      abstract: "A configurational-control strategy was developed for low-symmetry heteroleptic metal-organic cages with asymmetric ligands.",
+      keywords: "heteroleptic cage; low-symmetry structure; configurational control"
+    },
+    source: "https://doi.org/10.1039/D4SC08647C",
+    tags: ["金属有机笼", "低对称组装", "构型调控"]
+  },
+  {
     id: "paper-2024-01",
     date: "2024",
     zh: {
@@ -285,8 +305,8 @@ const PAPER_DATA = [
       abstract: "An intramolecular cation-interaction strategy enables ultra-high metal-ion selectivity.",
       keywords: "supramolecular recognition; metal-ion selectivity; intramolecular interaction"
     },
-    source: "#"
-    ,tags: ["金属离子识别", "超分子化学", "主客体相互作用"]
+    source: "https://doi.org/10.1002/anie.202416150",
+    tags: ["金属离子识别", "超分子化学", "主客体相互作用"]
   },
   {
     id: "paper-2023-01",
@@ -305,8 +325,8 @@ const PAPER_DATA = [
       abstract: "A dislocated bilayer MOF improves selectivity and durability in photocatalytic CO2-to-CO conversion.",
       keywords: "MOF; photocatalysis; CO2 reduction"
     },
-    source: "#"
-    ,tags: ["MOF", "光催化", "CO2还原"]
+    source: "https://doi.org/10.1002/adma.202209814",
+    tags: ["MOF", "光催化", "CO2还原"]
   },
   {
     id: "paper-2023-02",
@@ -325,8 +345,48 @@ const PAPER_DATA = [
       abstract: "Sandwich-like heterochromophore metallo-supramolecules were assembled via dense chromophore arrangement.",
       keywords: "metallo-supramolecule; chromophore arrangement; photophysics"
     },
-    source: "#"
-    ,tags: ["金属超分子", "发色团", "光物理"]
+    source: "#",
+    tags: ["金属超分子", "发色团", "光物理"]
+  },
+  {
+    id: "paper-2023-03",
+    date: "2023",
+    zh: {
+      title: "Nitrogen Atom Induced Contrast Effect on the Mechanofluorochromic Behavior",
+      journal: "Chemistry - An Asian Journal, 2023",
+      authors: "Yu et al.",
+      abstract: "研究氮原子引入对力致荧光变色行为的调控作用，揭示分子结构与发光响应之间的关联。",
+      keywords: "力致荧光变色；氮原子效应；发光调控"
+    },
+    en: {
+      title: "Nitrogen Atom Induced Contrast Effect on the Mechanofluorochromic Behavior",
+      journal: "Chemistry - An Asian Journal, 2023",
+      authors: "Yu et al.",
+      abstract: "This work examines how nitrogen-atom incorporation modulates mechanofluorochromic behavior and emission response.",
+      keywords: "mechanofluorochromism; nitrogen effect; luminescence regulation"
+    },
+    source: "#",
+    tags: ["发光材料", "力致变色", "分子设计"]
+  },
+  {
+    id: "paper-2023-04",
+    date: "2023",
+    zh: {
+      title: "Designing Narcissistic Self-Sorting Terpyridine Moieties with High Coordination Selectivity for Complex Metallo-Supramolecules",
+      journal: "Communications Chemistry, 2023",
+      authors: "Wang Lab et al.",
+      abstract: "通过高配位选择性的 terpyridine 单元设计，实现复杂金属超分子体系中的自分类组装。",
+      keywords: "自分类；terpyridine；配位选择性"
+    },
+    en: {
+      title: "Designing Narcissistic Self-Sorting Terpyridine Moieties with High Coordination Selectivity for Complex Metallo-Supramolecules",
+      journal: "Communications Chemistry, 2023",
+      authors: "Wang Lab et al.",
+      abstract: "Highly selective terpyridine motifs were designed to enable narcissistic self-sorting in complex metallo-supramolecular systems.",
+      keywords: "self-sorting; terpyridine; coordination selectivity"
+    },
+    source: "https://doi.org/10.1038/s42004-021-00577-0",
+    tags: ["自分类", "terpyridine", "金属超分子"]
   },
   {
     id: "paper-2022-01",
@@ -345,8 +405,8 @@ const PAPER_DATA = [
       abstract: "Guided synthesis of a Mo/Zn dual single-atom nanozyme reveals synergistic catalytic behavior.",
       keywords: "single-atom catalysis; nanozyme; synergy"
     },
-    source: "#"
-    ,tags: ["单原子催化", "纳米酶", "协同效应"]
+    source: "#",
+    tags: ["单原子催化", "纳米酶", "协同效应"]
   },
   {
     id: "paper-2022-02",
@@ -365,8 +425,68 @@ const PAPER_DATA = [
       abstract: "Metal-corner macrocycles were designed with controllable self-assembly behavior.",
       keywords: "macrocycle; coordination self-assembly; conformation control"
     },
-    source: "#"
-    ,tags: ["宏环", "配位自组装", "构型调控"]
+    source: "#",
+    tags: ["宏环", "配位自组装", "构型调控"]
+  },
+  {
+    id: "paper-2022-03",
+    date: "2022",
+    zh: {
+      title: "Porous Assembly of Metallo-Supramolecule and Polyoxometalate via Ionic Interaction",
+      journal: "Chinese Journal of Chemistry, 2022",
+      authors: "Xu et al.",
+      abstract: "利用离子相互作用构筑金属超分子与多金属氧酸盐的多孔组装结构。",
+      keywords: "多孔组装；多金属氧酸盐；离子作用"
+    },
+    en: {
+      title: "Porous Assembly of Metallo-Supramolecule and Polyoxometalate via Ionic Interaction",
+      journal: "Chinese Journal of Chemistry, 2022",
+      authors: "Xu et al.",
+      abstract: "Porous assemblies of metallo-supramolecules and polyoxometalates were constructed through ionic interactions.",
+      keywords: "porous assembly; polyoxometalate; ionic interaction"
+    },
+    source: "#",
+    tags: ["多孔组装", "多酸", "离子作用"]
+  },
+  {
+    id: "paper-2022-04",
+    date: "2022",
+    zh: {
+      title: "Coordination-Driven Terpyridine-Based Twisted Prisms with Tunable Emissions",
+      journal: "Advanced Optical Materials, 2022",
+      authors: "Zeng et al.",
+      abstract: "构筑基于 terpyridine 的扭曲棱柱超分子，实现可调发射性质与光学功能。",
+      keywords: "terpyridine；扭曲棱柱；可调发光"
+    },
+    en: {
+      title: "Coordination-Driven Terpyridine-Based Twisted Prisms with Tunable Emissions",
+      journal: "Advanced Optical Materials, 2022",
+      authors: "Zeng et al.",
+      abstract: "Terpyridine-based twisted prisms were assembled through coordination-driven strategies with tunable emission behavior.",
+      keywords: "terpyridine; twisted prism; tunable emission"
+    },
+    source: "#",
+    tags: ["terpyridine", "发光调控", "超分子棱柱"]
+  },
+  {
+    id: "paper-2022-05",
+    date: "2022",
+    zh: {
+      title: "Shape-Dependent Complementary Ditopic Terpyridine Pair with Two Levels of Self-Assembly",
+      journal: "Macromolecular Rapid Communications, 2022",
+      authors: "Li et al.",
+      abstract: "发展形状依赖的互补型双位点 terpyridine 对，实现两级自组装行为调控。",
+      keywords: "双位点 terpyridine；两级自组装；形状依赖"
+    },
+    en: {
+      title: "Shape-Dependent Complementary Ditopic Terpyridine Pair with Two Levels of Self-Assembly",
+      journal: "Macromolecular Rapid Communications, 2022",
+      authors: "Li et al.",
+      abstract: "A shape-dependent complementary ditopic terpyridine pair was developed with two levels of self-assembly.",
+      keywords: "ditopic terpyridine; hierarchical self-assembly; shape dependence"
+    },
+    source: "#",
+    tags: ["层级自组装", "terpyridine", "形状效应"]
   },
   {
     id: "paper-2021-01",
@@ -385,13 +505,113 @@ const PAPER_DATA = [
       abstract: "Dissymmetrical modulation enables precise conformational control of a metallo-supramolecular cage.",
       keywords: "supramolecular cage; conformational control; dissymmetrical modulation"
     },
-    source: "#"
-    ,tags: ["超分子笼", "构象控制", "不对称调控"]
+    source: "https://doi.org/10.1002/anie.202111430",
+    tags: ["超分子笼", "构象控制", "不对称调控"]
+  },
+  {
+    id: "paper-2021-02",
+    date: "2021",
+    zh: {
+      title: "Self-Assembly of Metallo-Supramolecules with Dissymmetrical Ligands and Characterization by Scanning Tunneling Microscopy",
+      journal: "CCS Chemistry, 2021",
+      authors: "Shi et al.",
+      abstract: "研究不对称配体参与的金属超分子自组装行为，并结合扫描隧道显微技术进行表征。",
+      keywords: "扫描隧道显微；不对称配体；金属超分子"
+    },
+    en: {
+      title: "Self-Assembly of Metallo-Supramolecules with Dissymmetrical Ligands and Characterization by Scanning Tunneling Microscopy",
+      journal: "CCS Chemistry, 2021",
+      authors: "Shi et al.",
+      abstract: "Metallo-supramolecules assembled from dissymmetrical ligands were characterized by scanning tunneling microscopy.",
+      keywords: "STM; dissymmetrical ligand; metallo-supramolecule"
+    },
+    source: "#",
+    tags: ["扫描隧道显微", "不对称配体", "金属超分子"]
+  },
+  {
+    id: "paper-2020-01",
+    date: "2020",
+    zh: {
+      title: "From Dimeric to Octameric Metallo-Supramolecular Macrocycles",
+      journal: "Macromolecular Rapid Communications, 2020",
+      authors: "Guan et al.",
+      abstract: "实现从二聚体到八聚体金属超分子大环的结构拓展，揭示组装尺度演化规律。",
+      keywords: "超分子大环；聚集尺度；结构演化"
+    },
+    en: {
+      title: "From Dimeric to Octameric Metallo-Supramolecular Macrocycles",
+      journal: "Macromolecular Rapid Communications, 2020",
+      authors: "Guan et al.",
+      abstract: "Metallo-supramolecular macrocycles were expanded from dimeric to octameric architectures.",
+      keywords: "metallo-macrocycle; aggregation scale; structural evolution"
+    },
+    source: "#",
+    tags: ["超分子大环", "结构演化", "配位组装"]
+  },
+  {
+    id: "paper-2019-01",
+    date: "2019",
+    zh: {
+      title: "Porphyrin-Containing Metallacage with Precise Active Sites and Super-Long-Term Stability",
+      journal: "Inorganic Chemistry, 2019",
+      authors: "Zhou et al.",
+      abstract: "构筑含卟啉活性位点的金属笼结构，兼具精准位点调控与长期稳定性。",
+      keywords: "卟啉金属笼；活性位点；稳定性"
+    },
+    en: {
+      title: "Porphyrin-Containing Metallacage with Precise Active Sites and Super-Long-Term Stability",
+      journal: "Inorganic Chemistry, 2019",
+      authors: "Zhou et al.",
+      abstract: "A porphyrin-containing metallacage with precise active sites and long-term stability was developed.",
+      keywords: "porphyrin metallacage; active site; stability"
+    },
+    source: "https://doi.org/10.1021/acs.inorgchem.9b02775",
+    tags: ["卟啉", "金属笼", "活性位点"]
+  },
+  {
+    id: "paper-2016-01",
+    date: "2016",
+    zh: {
+      title: "JACS Article Indexed by jacs.6b04959",
+      journal: "Journal of the American Chemical Society, 2016",
+      authors: "Wang Lab et al.",
+      abstract: "已根据 PDF 文献编号补入课题组成果库，后续可继续替换为更完整的标准题录。",
+      keywords: "JACS；课题组论文；待精修"
+    },
+    en: {
+      title: "JACS Article Indexed by jacs.6b04959",
+      journal: "Journal of the American Chemical Society, 2016",
+      authors: "Wang Lab et al.",
+      abstract: "This JACS article has been indexed from the local PDF identifier and can be refined with full citation details later.",
+      keywords: "JACS; group publication; pending refinement"
+    },
+    source: "https://doi.org/10.1021/jacs.6b04959",
+    tags: ["JACS", "课题组论文", "待精修"]
+  },
+  {
+    id: "paper-2015-01",
+    date: "2015",
+    zh: {
+      title: "Nano Letters Article Indexed by acs.nanolett.5b03069",
+      journal: "Nano Letters, 2015",
+      authors: "Wang Lab et al.",
+      abstract: "已按 DOI 规则补入 Nano Letters 论文记录，便于后续继续补充标准摘要与作者信息。",
+      keywords: "Nano Letters；ACS；待精修"
+    },
+    en: {
+      title: "Nano Letters Article Indexed by acs.nanolett.5b03069",
+      journal: "Nano Letters, 2015",
+      authors: "Wang Lab et al.",
+      abstract: "This Nano Letters record was indexed by DOI-style file code and can be refined with a standard citation later.",
+      keywords: "Nano Letters; ACS; pending refinement"
+    },
+    source: "https://doi.org/10.1021/acs.nanolett.5b03069",
+    tags: ["Nano Letters", "ACS", "待精修"]
   }
 ];
 
 const FEATURED = {
-  paperId: "paper-2024-01",
+  paperId: "paper-2025-01",
   members: ["王绍志", "郭梓腾", "陈贺"]
 };
 
