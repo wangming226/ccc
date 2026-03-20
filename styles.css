@@ -145,6 +145,10 @@ body {
   gap: 18px;
 }
 
+.nav-links-static {
+  position: static;
+}
+
 .nav-links a {
   text-decoration: none;
   color: var(--text);
@@ -297,6 +301,33 @@ body {
 
 .card-accent {
   border-top: 4px solid var(--accent);
+}
+
+.entry-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.entry-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.entry-card h3 {
+  margin: 0 0 8px;
+  color: var(--primary);
+}
+
+.entry-card p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .members-wrap {
@@ -606,7 +637,8 @@ body {
 
   .about-grid,
   .research-grid,
-  .contact-grid {
+  .contact-grid,
+  .entry-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -631,6 +663,15 @@ body {
     padding: 14px;
     display: none;
     flex-direction: column;
+  }
+
+  .nav-links-static {
+    position: static;
+    display: flex;
+    width: auto;
+    border: 0;
+    padding: 0;
+    background: transparent;
   }
 
   .nav-links.show {

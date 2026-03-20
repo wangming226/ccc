@@ -15,13 +15,28 @@ function applyLang() {
   });
 }
 
-function renderNews() {
-  const list = document.getElementById("newsList");
-  if (!list) return;
-  list.innerHTML = SITE_NEWS.map((n) => {
-    const d = n[currentLang];
-    return `<article class="news-item"><p class="meta">${n.date}</p><h4>${d.title}</h4><p>${d.desc}</p></article>`;
-  }).join("");
+function renderPaperDetail() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const paper = PAPER_DATA.find((p) => p.id === id);
+  const root = document.getElementById("paperDetail");
+
+  if (!paper) {
+    root.innerHTML = `<h3>${t("noPaper")}</h3><a class="output-source-btn" href="./publications.html">${t("backList")}</a>`;
+    return;
+  }
+
+  const d = paper[currentLang];
+  root.innerHTML = `
+    <p class="meta">${paper.date}</p>
+    <h2>${d.title}</h2>
+    <p><strong>${d.journal}</strong></p>
+    <p>${d.abstract}</p>
+    <div class="paper-actions">
+      <a class="output-source-btn" href="./publications.html">${t("backList")}</a>
+      <a class="output-source-btn" href="${paper.source}" target="_blank" rel="noopener noreferrer">PDF/DOI</a>
+    </div>
+  `;
 }
 
 function setupLangButtons() {
@@ -32,12 +47,11 @@ function setupLangButtons() {
       currentLang = lang;
       localStorage.setItem("wm-lab-lang", currentLang);
       applyLang();
-      renderNews();
+      renderPaperDetail();
     });
   });
 }
 
-document.getElementById("year").textContent = `© ${new Date().getFullYear()}`;
 setupLangButtons();
 applyLang();
-renderNews();
+renderPaperDetail();

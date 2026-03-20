@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>成员介绍 | 王明课题组</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav container">
+        <a href="./index.html" class="brand">
+          <span class="brand-badge">WM</span>
+          <span>
+            <strong data-i18n="brandCn">王明课题组</strong>
+            <small data-i18n="brandEn">Wang Ming Laboratory</small>
+          </span>
+        </a>
+        <div class="nav-right">
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang-btn="zh" type="button">中文</button>
+            <button class="lang-btn" data-lang-btn="en" type="button">EN</button>
+          </div>
+        </div>
+        <ul class="nav-links nav-links-static">
+          <li><a href="./index.html">首页</a></li>
+          <li><a href="./publications.html" data-i18n="navPapers">文章信息</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="section container">
+      <div class="section-head">
+        <h2 data-i18n="membersTitle">成员介绍</h2>
+        <p data-i18n="membersSub">点击姓名跳转到个人简介</p>
+      </div>
+      <div id="membersWrap" class="members-wrap"></div>
+    </main>
+
+    <script src="./site-data.js"></script>
+    <script src="./members.js"></script>
+  </body>
+</html>

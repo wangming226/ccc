@@ -15,12 +15,19 @@ function applyLang() {
   });
 }
 
-function renderNews() {
-  const list = document.getElementById("newsList");
-  if (!list) return;
-  list.innerHTML = SITE_NEWS.map((n) => {
-    const d = n[currentLang];
-    return `<article class="news-item"><p class="meta">${n.date}</p><h4>${d.title}</h4><p>${d.desc}</p></article>`;
+function renderPapers() {
+  const list = document.getElementById("paperList");
+  list.innerHTML = PAPER_DATA.map((p) => {
+    const d = p[currentLang];
+    return `
+      <article class="output-item">
+        <p class="meta">${p.date}</p>
+        <h4>${d.title}</h4>
+        <p>${d.journal}</p>
+        <p>${d.abstract}</p>
+        <a class="output-source-btn" href="./paper.html?id=${p.id}">${t("detailBtn")}</a>
+      </article>
+    `;
   }).join("");
 }
 
@@ -32,12 +39,11 @@ function setupLangButtons() {
       currentLang = lang;
       localStorage.setItem("wm-lab-lang", currentLang);
       applyLang();
-      renderNews();
+      renderPapers();
     });
   });
 }
 
-document.getElementById("year").textContent = `© ${new Date().getFullYear()}`;
 setupLangButtons();
 applyLang();
-renderNews();
+renderPapers();
