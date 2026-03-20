@@ -1,4 +1,4 @@
-let currentLang = localStorage.getItem("wm-lab-lang") || "zh";
+﻿let currentLang = localStorage.getItem("wm-lab-lang") || "zh";
 
 function t(key) {
   return SITE_I18N[currentLang][key] || "";
@@ -19,46 +19,79 @@ function applyLang() {
   });
 }
 
+function nameOf(m) {
+  return currentLang === "zh" ? m.name : m.enName;
+}
+
+function focusOf(m) {
+  return currentLang === "zh" ? m.focusZh : m.focusEn;
+}
+
+function bioOf(m) {
+  return currentLang === "zh" ? m.bioZh : m.bioEn;
+}
+
+function renderJumpLinks(arr) {
+  return arr.map((m) => `<a class="member-jump-link" href="#${makeId(m.name)}">${nameOf(m)}</a>`).join("");
+}
+
+function renderProfileCards(arr, roleLabel) {
+  return arr
+    .map((m) => `
+      <article class="member-profile-card" id="${makeId(m.name)}">
+        <div class="member-photo-wrap">
+          <img class="member-photo" src="./assets/members/${m.name}.jpg" alt="${nameOf(m)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <span class="member-photo-fallback">${m.name.slice(0, 1)}</span>
+        </div>
+        <h4>${nameOf(m)}</h4>
+        <p class="member-profile-role">${roleLabel}</p>
+        <p><strong>${t("focusLabel")}：</strong>${focusOf(m)}</p>
+        <p><strong>${t("emailLabel")}：</strong><a href="mailto:${m.email}">${m.email}</a></p>
+        <p><strong>${t("profileLabel")}：</strong>${bioOf(m)}</p>
+      </article>
+    `)
+    .join("");
+}
+
+function renderAlumniCards(arr) {
+  return arr
+    .map((m) => `
+      <article class="member-profile-card" id="${makeId(m.name)}">
+        <div class="member-photo-wrap">
+          <img class="member-photo" src="./assets/members/${m.name}.jpg" alt="${nameOf(m)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <span class="member-photo-fallback">${m.name.slice(0, 1)}</span>
+        </div>
+        <h4>${nameOf(m)}</h4>
+        <p class="member-profile-role">${t("alumni")}</p>
+        <p>${currentLang === "zh" ? m.destinationZh : m.destinationEn}</p>
+      </article>
+    `)
+    .join("");
+}
+
 function renderMembers() {
   const wrap = document.getElementById("membersWrap");
-
-  const listLinks = (arr) =>
-    arr
-      .map((name) => `<a class="member-jump-link" href="#${makeId(name)}">${name}</a>`)
-      .join("");
-
-  const profileCards = (arr, role) =>
-    arr
-      .map(
-        (name) => `
-          <article class="member-profile-card" id="${makeId(name)}">
-            <div class="member-photo-wrap">
-              <img class="member-photo" src="./assets/members/${name}.jpg" alt="${name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-              <span class="member-photo-fallback">${name.slice(0, 1)}</span>
-            </div>
-            <h4>${name}</h4>
-            <p class="member-profile-role">${role}</p>
-            <p><strong>${currentLang === "zh" ? "研究方向" : "Research"}：</strong>${currentLang === "zh" ? "待补充" : "TBD"}</p>
-            <p><strong>${currentLang === "zh" ? "邮箱" : "Email"}：</strong>${makeId(name)}@wangming-lab.com</p>
-          </article>
-        `
-      )
-      .join("");
 
   wrap.innerHTML = `
     <section class="member-group member-nav-block">
       <h3>${t("phd")}</h3>
-      <div class="member-jump-links">${listLinks(MEMBER_DATA.phd)}</div>
+      <div class="member-jump-links">${renderJumpLinks(MEMBER_DATA.phd)}</div>
       <h3 style="margin-top:16px">${t("msc")}</h3>
-      <div class="member-jump-links">${listLinks(MEMBER_DATA.msc)}</div>
+      <div class="member-jump-links">${renderJumpLinks(MEMBER_DATA.msc)}</div>
+      <h3 style="margin-top:16px">${t("alumni")}</h3>
+      <div class="member-jump-links">${renderJumpLinks(MEMBER_DATA.alumni)}</div>
     </section>
     <section class="member-group">
-      <h3>${t("membersTitle")}</h3>
-      <div class="member-profile-grid">${profileCards(MEMBER_DATA.phd, t("phd"))}${profileCards(MEMBER_DATA.msc, t("msc"))}</div>
+      <h3>${t("phd")}</h3>
+      <div class="member-profile-grid">${renderProfileCards(MEMBER_DATA.phd, t("phd"))}</div>
+    </section>
+    <section class="member-group">
+      <h3>${t("msc")}</h3>
+      <div class="member-profile-grid">${renderProfileCards(MEMBER_DATA.msc, t("msc"))}</div>
     </section>
     <section class="member-group">
       <h3>${t("alumni")}</h3>
-      <div class="member-jump-links">${MEMBER_DATA.alumni.map((n) => `<span class="member-jump-link">${n}</span>`).join("")}</div>
+      <div class="member-profile-grid">${renderAlumniCards(MEMBER_DATA.alumni)}</div>
     </section>
   `;
 }

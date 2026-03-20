@@ -15,21 +15,16 @@ function applyLang() {
   });
 }
 
-function renderPapers() {
-  const list = document.getElementById("paperList");
-  list.innerHTML = PAPER_DATA.map((p) => {
-    const d = p[currentLang];
+function renderNewsList() {
+  const list = document.getElementById("newsPageList");
+  list.innerHTML = SITE_NEWS.map((n) => {
+    const d = n[currentLang];
     return `
-      <article class="output-item">
-        <p class="meta">${p.date}</p>
+      <article class="news-item">
+        <p class="meta">${n.date}</p>
         <h4>${d.title}</h4>
-        <p><strong>${t("authors")}：</strong>${d.authors}</p>
-        <p><strong>${t("journal")}：</strong>${d.journal}</p>
-        <p><strong>${t("summary")}：</strong>${d.abstract}</p>
-        <div class="paper-actions">
-          <a class="output-source-btn" href="./paper.html?id=${p.id}">${t("detailBtn")}</a>
-          <a class="output-source-btn" href="${p.source}" target="_blank" rel="noopener noreferrer">${t("source")}</a>
-        </div>
+        <p>${d.desc}</p>
+        <a class="output-source-btn" href="./news-item.html?id=${n.id}">${t("detailNewsBtn")}</a>
       </article>
     `;
   }).join("");
@@ -43,11 +38,11 @@ function setupLangButtons() {
       currentLang = lang;
       localStorage.setItem("wm-lab-lang", currentLang);
       applyLang();
-      renderPapers();
+      renderNewsList();
     });
   });
 }
 
 setupLangButtons();
 applyLang();
-renderPapers();
+renderNewsList();
