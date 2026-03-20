@@ -466,6 +466,66 @@ body {
   padding: 16px;
 }
 
+.paper-nav-block {
+  background: linear-gradient(180deg, rgba(11, 78, 162, 0.06), rgba(11, 78, 162, 0));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.paper-nav-block h4 {
+  margin: 0 0 10px;
+  color: var(--primary);
+}
+
+.paper-jump-links {
+  display: grid;
+  gap: 8px;
+}
+
+.paper-jump-link {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  scroll-margin-top: 100px;
+}
+
+.paper-jump-link:hover {
+  border-color: var(--primary-2);
+  color: var(--primary);
+}
+
+.paper-detail-card {
+  scroll-margin-top: 100px;
+}
+
+.paper-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.paper-jump-back,
+.output-source-btn {
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  color: var(--primary);
+  background: #fff;
+  font-size: 13px;
+}
+
+.output-source-pending {
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .meta {
   margin: 0 0 8px;
   color: var(--primary);

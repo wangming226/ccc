@@ -42,6 +42,11 @@ const i18n = {
     membersSub: "点击在读成员姓名可跳转至个人简介卡片。",
     outputsTitle: "研究成果",
     outputsSub: "论文、项目、会议统一展示，并支持中英双语。",
+    paperNavTitle: "论文快速跳转",
+    jumpToDetail: "跳转详情",
+    backToNav: "返回导航",
+    viewSource: "查看原文",
+    sourcePending: "链接待补充",
     tabPapers: "论文",
     tabProjects: "项目",
     tabConferences: "会议",
@@ -111,6 +116,11 @@ const i18n = {
     membersSub: "Click current student names to jump to profile cards.",
     outputsTitle: "Research Outputs",
     outputsSub: "Papers, projects, and conferences with bilingual display.",
+    paperNavTitle: "Paper Quick Jump",
+    jumpToDetail: "Jump to details",
+    backToNav: "Back to nav",
+    viewSource: "View source",
+    sourcePending: "Link pending",
     tabPapers: "Papers",
     tabProjects: "Projects",
     tabConferences: "Conferences",
@@ -418,13 +428,63 @@ function renderMembers() {
   `;
 }
 
+function makeOutputId(type, idx) {
+  return `${type}-item-${idx + 1}`;
+}
+
 function renderOutputs(type = "papers") {
   currentOutputType = type;
   const list = document.getElementById("outputsList");
-  list.innerHTML = (outputData[type] || [])
-    .map((item) => {
+  const items = outputData[type] || [];
+
+  if (type === "papers") {
+    const nav = items
+      .map((item, idx) => {
+        const d = item[currentLang];
+        const id = makeOutputId(type, idx);
+        return `<a class="paper-jump-link" href="#${id}">${d.title}</a>`;
+      })
+      .join("");
+
+    const details = items
+      .map((item, idx) => {
+        const d = item[currentLang];
+        const id = makeOutputId(type, idx);
+        const sourceBtn = item.link
+          ? `<a class="output-source-btn" href="${item.link}" target="_blank" rel="noopener noreferrer">${t("viewSource")}</a>`
+          : `<span class="output-source-pending">${t("sourcePending")}</span>`;
+        return `
+          <article class="output-item paper-detail-card" id="${id}">
+            <p class="meta">${item.date}</p>
+            <h4>${d.title}</h4>
+            <p>${d.desc}</p>
+            <div class="paper-actions">
+              <a class="paper-jump-back" href="#outputs">${t("backToNav")}</a>
+              ${sourceBtn}
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+
+    list.innerHTML = `
+      <section class="paper-nav-block">
+        <h4>${t("paperNavTitle")}</h4>
+        <div class="paper-jump-links">${nav}</div>
+      </section>
+      <section class="paper-details">${details}</section>
+    `;
+    return;
+  }
+
+  list.innerHTML = items
+    .map((item, idx) => {
       const d = item[currentLang];
-      return `<article class="output-item"><p class="meta">${item.date}</p><h4>${d.title}</h4><p>${d.desc}</p></article>`;
+      const id = makeOutputId(type, idx);
+      const sourceBtn = item.link
+        ? `<a class="output-source-btn" href="${item.link}" target="_blank" rel="noopener noreferrer">${t("viewSource")}</a>`
+        : "";
+      return `<article class="output-item" id="${id}"><p class="meta">${item.date}</p><h4>${d.title}</h4><p>${d.desc}</p>${sourceBtn}</article>`;
     })
     .join("");
 }
