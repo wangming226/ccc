@@ -1,4 +1,4 @@
-﻿let currentLang = localStorage.getItem("wm-lab-lang") || "zh";
+let currentLang = localStorage.getItem("wm-lab-lang") || "zh";
 
 function t(key) {
   return SITE_I18N[currentLang][key] || "";
@@ -13,6 +13,10 @@ function applyLang() {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (key) el.textContent = t(key);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (key) el.setAttribute("placeholder", t(key));
   });
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.classList.toggle("active", btn.getAttribute("data-lang-btn") === currentLang);
@@ -29,6 +33,12 @@ function focusOf(m) {
 
 function bioOf(m) {
   return currentLang === "zh" ? m.bioZh : m.bioEn;
+}
+
+function memberMatches(m, query) {
+  if (!query) return true;
+  const text = `${m.name} ${m.enName || ""} ${m.email || ""} ${m.focusZh || ""} ${m.focusEn || ""} ${m.bioZh || ""} ${m.bioEn || ""} ${m.destinationZh || ""} ${m.destinationEn || ""}`.toLowerCase();
+  return text.includes(query);
 }
 
 function renderJumpLinks(arr) {
@@ -71,27 +81,36 @@ function renderAlumniCards(arr) {
 
 function renderMembers() {
   const wrap = document.getElementById("membersWrap");
+  const query = (document.getElementById("memberSearch")?.value || "").trim().toLowerCase();
+  const phd = MEMBER_DATA.phd.filter((m) => memberMatches(m, query));
+  const msc = MEMBER_DATA.msc.filter((m) => memberMatches(m, query));
+  const alumni = MEMBER_DATA.alumni.filter((m) => memberMatches(m, query));
+
+  if (!phd.length && !msc.length && !alumni.length) {
+    wrap.innerHTML = `<div class="empty-state">${t("searchEmpty")}</div>`;
+    return;
+  }
 
   wrap.innerHTML = `
     <section class="member-group member-nav-block">
       <h3>${t("phd")}</h3>
-      <div class="member-jump-links">${renderJumpLinks(MEMBER_DATA.phd)}</div>
+      <div class="member-jump-links">${renderJumpLinks(phd)}</div>
       <h3 style="margin-top:16px">${t("msc")}</h3>
-      <div class="member-jump-links">${renderJumpLinks(MEMBER_DATA.msc)}</div>
+      <div class="member-jump-links">${renderJumpLinks(msc)}</div>
       <h3 style="margin-top:16px">${t("alumni")}</h3>
-      <div class="member-jump-links">${renderJumpLinks(MEMBER_DATA.alumni)}</div>
+      <div class="member-jump-links">${renderJumpLinks(alumni)}</div>
     </section>
     <section class="member-group">
       <h3>${t("phd")}</h3>
-      <div class="member-profile-grid">${renderProfileCards(MEMBER_DATA.phd, t("phd"))}</div>
+      <div class="member-profile-grid">${renderProfileCards(phd, t("phd"))}</div>
     </section>
     <section class="member-group">
       <h3>${t("msc")}</h3>
-      <div class="member-profile-grid">${renderProfileCards(MEMBER_DATA.msc, t("msc"))}</div>
+      <div class="member-profile-grid">${renderProfileCards(msc, t("msc"))}</div>
     </section>
     <section class="member-group">
       <h3>${t("alumni")}</h3>
-      <div class="member-profile-grid">${renderAlumniCards(MEMBER_DATA.alumni)}</div>
+      <div class="member-profile-grid">${renderAlumniCards(alumni)}</div>
     </section>
   `;
 }
@@ -109,6 +128,13 @@ function setupLangButtons() {
   });
 }
 
+function setupSearch() {
+  const input = document.getElementById("memberSearch");
+  if (!input) return;
+  input.addEventListener("input", () => renderMembers());
+}
+
 setupLangButtons();
+setupSearch();
 applyLang();
 renderMembers();

@@ -35,6 +35,16 @@
         <h2 data-i18n="newsListTitle">新闻列表</h2>
         <p data-i18n="newsListSub">点击新闻进入独立详情页</p>
       </div>
+      <section class="filter-panel">
+        <div class="search-box">
+          <label class="search-label" data-i18n="searchTitle">站内检索</label>
+          <input id="newsSearch" class="search-input" type="search" data-i18n-placeholder="searchPlaceholderNews" placeholder="搜索新闻标题、内容" />
+        </div>
+        <div>
+          <p class="search-label" data-i18n="tagTitle">学术标签</p>
+          <div id="newsTags" class="tag-row"></div>
+        </div>
+      </section>
       <div id="newsPageList" class="news-list"></div>
     </main>
 

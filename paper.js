@@ -30,6 +30,7 @@ function renderPaperDetail() {
   const d = paper[currentLang];
   const prev = idx > 0 ? PAPER_DATA[idx - 1] : null;
   const next = idx < PAPER_DATA.length - 1 ? PAPER_DATA[idx + 1] : null;
+  const tags = paper.tags.map((tag) => `<span class="meta-tag">${tag}</span>`).join("");
 
   root.innerHTML = `
     <p class="meta">${paper.date}</p>
@@ -38,6 +39,7 @@ function renderPaperDetail() {
     <p><strong>${t("journal")}：</strong>${d.journal}</p>
     <p><strong>${t("keywords")}：</strong>${d.keywords}</p>
     <p><strong>${t("summary")}：</strong>${d.abstract}</p>
+    <div class="meta-tags">${tags}</div>
     <div class="paper-actions">
       <a class="output-source-btn" href="./publications.html">${t("backList")}</a>
       <a class="output-source-btn" href="${paper.source}" target="_blank" rel="noopener noreferrer">PDF/DOI</a>

@@ -1,4 +1,6 @@
-﻿let currentLang = localStorage.getItem("wm-lab-lang") || "zh";
+let currentLang = localStorage.getItem("wm-lab-lang") || "zh";
+let activeSlide = 0;
+let slideTimer = null;
 
 function t(key) {
   return SITE_I18N[currentLang][key] || "";
@@ -30,12 +32,87 @@ function renderFeatured() {
   if (fp) {
     const paper = PAPER_DATA.find((p) => p.id === FEATURED.paperId) || PAPER_DATA[0];
     const d = paper[currentLang];
-    fp.innerHTML = `<p><strong>${d.title}</strong></p><p>${d.journal}</p><a class="output-source-btn" href="./paper.html?id=${paper.id}">${t("detailBtn")}</a>`;
+    fp.innerHTML = `<p><strong>${d.title}</strong></p><p>${d.journal}</p><div class="meta-tags">${paper.tags.map((tag) => `<span class="meta-tag">${tag}</span>`).join("")}</div><div style="margin-top:10px"><a class="output-source-btn" href="./paper.html?id=${paper.id}">${t("detailBtn")}</a></div>`;
   }
   if (fm) {
     const arr = FEATURED.members.map((name) => `<span class="member-jump-link">${name}</span>`).join("");
     fm.innerHTML = `<div class="member-jump-links">${arr}</div><div style="margin-top:10px"><a class="output-source-btn" href="./members.html">${t("navMembers")}</a></div>`;
   }
+}
+
+function updateCarousel() {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".carousel-dot");
+  slides.forEach((slide, index) => {
+    slide.classList.toggle("active", index === activeSlide);
+  });
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === activeSlide);
+  });
+}
+
+function renderCarousel() {
+  const slideRoot = document.getElementById("heroSlides");
+  const dotRoot = document.getElementById("heroDots");
+  if (!slideRoot || !dotRoot) return;
+
+  slideRoot.innerHTML = HERO_SLIDES.map((item, index) => {
+    const news = SITE_NEWS.find((entry) => entry.id === item.newsId);
+    if (!news) return "";
+    const d = news[currentLang];
+    const active = index === activeSlide ? " active" : "";
+    return `
+      <article class="carousel-slide${active}">
+        <p class="carousel-accent">${item.accent}</p>
+        <h3>${d.title}</h3>
+        <p>${d.desc}</p>
+        <div class="meta-tags">${(news.tags || []).map((tag) => `<span class="meta-tag">${tag}</span>`).join("")}</div>
+        <div class="paper-actions">
+          <a class="output-source-btn" href="./news-item.html?id=${news.id}">${t("detailNewsBtn")}</a>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  dotRoot.innerHTML = HERO_SLIDES.map((_, index) => {
+    const active = index === activeSlide ? " active" : "";
+    return `<button class="carousel-dot${active}" type="button" data-slide-index="${index}" aria-label="Slide ${index + 1}"></button>`;
+  }).join("");
+
+  dotRoot.querySelectorAll("[data-slide-index]").forEach((dot) => {
+    dot.addEventListener("click", () => {
+      activeSlide = Number(dot.getAttribute("data-slide-index")) || 0;
+      updateCarousel();
+      restartCarousel();
+    });
+  });
+
+  updateCarousel();
+}
+
+function moveSlide(step) {
+  activeSlide = (activeSlide + step + HERO_SLIDES.length) % HERO_SLIDES.length;
+  updateCarousel();
+  restartCarousel();
+}
+
+function startCarousel() {
+  if (slideTimer) clearInterval(slideTimer);
+  slideTimer = setInterval(() => {
+    activeSlide = (activeSlide + 1) % HERO_SLIDES.length;
+    updateCarousel();
+  }, 4500);
+}
+
+function restartCarousel() {
+  startCarousel();
+}
+
+function setupCarouselControls() {
+  const prev = document.getElementById("carouselPrev");
+  const next = document.getElementById("carouselNext");
+  if (prev) prev.addEventListener("click", () => moveSlide(-1));
+  if (next) next.addEventListener("click", () => moveSlide(1));
 }
 
 function setupLangButtons() {
@@ -48,12 +125,16 @@ function setupLangButtons() {
       applyLang();
       renderNews();
       renderFeatured();
+      renderCarousel();
     });
   });
 }
 
 document.getElementById("year").textContent = `© ${new Date().getFullYear()}`;
 setupLangButtons();
+setupCarouselControls();
 applyLang();
 renderNews();
 renderFeatured();
+renderCarousel();
+startCarousel();

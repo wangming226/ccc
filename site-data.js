@@ -6,8 +6,15 @@
     navPapers: "文章信息",
     navNews: "新闻动态",
     navContact: "联系我们",
+    heroBadge: "吉林大学 · 超分子化学",
     heroTitle: "王明课题组",
     heroDesc: "研究方向：金属有机笼的精准构筑及叠层超分子的性质与功能。",
+    piTitle: "课题组负责人",
+    piName: "王明 教授",
+    piDesc: "长期从事金属有机笼精准构筑、叠层超分子组装及功能应用研究，欢迎对超分子化学、配位自组装、分子识别和功能材料感兴趣的同学加入。",
+    piBtn: "查看成员与简介",
+    carouselTitle: "焦点新闻",
+    logoLabel: "课题组 Logo",
     entryTitle: "功能入口",
     entrySub: "点击后进入独立页面",
     entryMembers: "成员介绍",
@@ -48,6 +55,14 @@
     focusLabel: "研究方向",
     emailLabel: "邮箱",
     profileLabel: "个人简介"
+    ,searchTitle: "站内检索"
+    ,searchPlaceholderMembers: "搜索成员姓名、研究方向、邮箱"
+    ,searchPlaceholderPapers: "搜索论文题目、作者、期刊"
+    ,searchPlaceholderNews: "搜索新闻标题、内容"
+    ,searchEmpty: "没有匹配结果"
+    ,tagTitle: "学术标签"
+    ,allTags: "全部"
+    ,researchTagsTitle: "研究关键词"
   },
   en: {
     brandCn: "Wang Ming Laboratory",
@@ -56,8 +71,15 @@
     navPapers: "Publications",
     navNews: "News",
     navContact: "Contact",
+    heroBadge: "Jilin University · Supramolecular Chemistry",
     heroTitle: "Wang Ming Laboratory",
     heroDesc: "Research direction: precise construction of metal-organic cages and stacked supramolecular functions.",
+    piTitle: "Principal Investigator",
+    piName: "Prof. Ming Wang",
+    piDesc: "The lab focuses on precise construction of metal-organic cages, stacked supramolecular assemblies, and functional applications in recognition, catalysis, and responsive materials.",
+    piBtn: "View Members",
+    carouselTitle: "Featured News",
+    logoLabel: "Lab Logo",
     entryTitle: "Entry Points",
     entrySub: "Click to enter standalone pages",
     entryMembers: "Members",
@@ -98,6 +120,14 @@
     focusLabel: "Research",
     emailLabel: "Email",
     profileLabel: "Profile"
+    ,searchTitle: "Search"
+    ,searchPlaceholderMembers: "Search name, focus, or email"
+    ,searchPlaceholderPapers: "Search title, author, or journal"
+    ,searchPlaceholderNews: "Search title or content"
+    ,searchEmpty: "No matching results"
+    ,tagTitle: "Academic Tags"
+    ,allTags: "All"
+    ,researchTagsTitle: "Research Keywords"
   }
 };
 
@@ -105,6 +135,7 @@ const SITE_NEWS = [
   {
     id: "news-20260320-1",
     date: "2026-03-20",
+    tags: ["网站更新", "信息架构", "多页面"],
     zh: {
       title: "网站升级为多页面结构",
       desc: "成员、论文、新闻均可独立跳转访问。",
@@ -125,6 +156,7 @@ const SITE_NEWS = [
   {
     id: "news-20260320-2",
     date: "2026-03-20",
+    tags: ["成员", "导航", "资料卡"],
     zh: {
       title: "成员模块完善为可检索跳转",
       desc: "在读与毕业成员均可点击并跳转到个人卡片。",
@@ -145,6 +177,7 @@ const SITE_NEWS = [
   {
     id: "news-20260320-3",
     date: "2026-03-20",
+    tags: ["论文", "详情页", "学术传播"],
     zh: {
       title: "论文详情页结构标准化",
       desc: "新增作者、期刊、关键词、摘要与上下篇导航。",
@@ -166,21 +199,21 @@ const SITE_NEWS = [
 
 const MEMBER_DATA = {
   phd: [
-    { name: "王绍志", enName: "Shaozhi Wang", email: "wangshaozhi@wangming-lab.com", focusZh: "金属有机笼精准构筑", focusEn: "Precise construction of metal-organic cages", bioZh: "关注配体工程与结构可控组装。", bioEn: "Focuses on ligand engineering and controllable assembly." },
-    { name: "谌宏群", enName: "Hongqun Chen", email: "chenhongqun@wangming-lab.com", focusZh: "叠层超分子有序组装", focusEn: "Ordered stacked supramolecular assembly", bioZh: "研究多重弱相互作用驱动机制。", bioEn: "Studies multi-weak-interaction driven mechanisms." },
-    { name: "张馨睿", enName: "Xinrui Zhang", email: "zhangxinrui@wangming-lab.com", focusZh: "超分子催化", focusEn: "Supramolecular catalysis", bioZh: "探索结构-催化性能关联。", bioEn: "Explores structure-catalysis relationships." },
-    { name: "代曼曼", enName: "Manman Dai", email: "daimanman@wangming-lab.com", focusZh: "分子识别与传感", focusEn: "Molecular recognition and sensing", bioZh: "开发高选择性识别体系。", bioEn: "Develops high-selectivity recognition systems." },
-    { name: "赵欣然", enName: "Xinran Zhao", email: "zhaoxinran@wangming-lab.com", focusZh: "刺激响应超分子体系", focusEn: "Stimuli-responsive supramolecular systems", bioZh: "构建可逆响应功能平台。", bioEn: "Builds reversible responsive functional platforms." },
-    { name: "郭梓腾", enName: "Ziteng Guo", email: "guoziteng@wangming-lab.com", focusZh: "功能有机-金属组装体", focusEn: "Functional organic-metal assemblies", bioZh: "聚焦发光与电子功能耦合。", bioEn: "Focuses on coupled luminescent and electronic functions." },
-    { name: "高梓诺", enName: "Zinuo Gao", email: "gaozinuo@wangming-lab.com", focusZh: "配位自组装机制", focusEn: "Coordination-driven self-assembly mechanisms", bioZh: "研究热力学与动力学控制路径。", bioEn: "Studies thermodynamic and kinetic control pathways." },
-    { name: "唐婕", enName: "Jie Tang", email: "tangjie@wangming-lab.com", focusZh: "主客体化学与功能化", focusEn: "Host-guest chemistry and functionalization", bioZh: "开展功能分子识别材料研究。", bioEn: "Works on functional molecular recognition materials." }
+    { name: "王绍志", enName: "Shaozhi Wang", email: "szwang21@mails.jlu.edu.cn", focusZh: "金属有机笼精准构筑", focusEn: "Precise construction of metal-organic cages", bioZh: "关注配体工程与结构可控组装。", bioEn: "Focuses on ligand engineering and controllable assembly." },
+    { name: "谌宏群", enName: "Hongqun Chen", email: "hongqun2022@163.com", focusZh: "叠层超分子有序组装", focusEn: "Ordered stacked supramolecular assembly", bioZh: "研究多重弱相互作用驱动机制。", bioEn: "Studies multi-weak-interaction driven mechanisms." },
+    { name: "张馨睿", enName: "Xinrui Zhang", email: "xrzhang24@mails.jlu.edu.cn", focusZh: "超分子催化", focusEn: "Supramolecular catalysis", bioZh: "探索结构-催化性能关联。", bioEn: "Explores structure-catalysis relationships." },
+    { name: "代曼曼", enName: "Manman Dai", email: "mmdai24@mails.jlu.edu.cn", focusZh: "分子识别与传感", focusEn: "Molecular recognition and sensing", bioZh: "开发高选择性识别体系。", bioEn: "Develops high-selectivity recognition systems." },
+    { name: "赵欣然", enName: "Xinran Zhao", email: "Xrzhao25@mails.jlu.edu.cn", focusZh: "刺激响应超分子体系", focusEn: "Stimuli-responsive supramolecular systems", bioZh: "构建可逆响应功能平台。", bioEn: "Builds reversible responsive functional platforms." },
+    { name: "郭梓腾", enName: "Ziteng Guo", email: "guozt22@mails.jlu.edu.cn", focusZh: "功能有机-金属组装体", focusEn: "Functional organic-metal assemblies", bioZh: "聚焦发光与电子功能耦合。", bioEn: "Focuses on coupled luminescent and electronic functions." },
+    { name: "高梓诺", enName: "Zinuo Gao", email: "gaozn23@mails.jlu.edu.cn", focusZh: "配位自组装机制", focusEn: "Coordination-driven self-assembly mechanisms", bioZh: "研究热力学与动力学控制路径。", bioEn: "Studies thermodynamic and kinetic control pathways." },
+    { name: "唐婕", enName: "Jie Tang", email: "tangjie23@mails.jlu.edu.cn", focusZh: "主客体化学与功能化", focusEn: "Host-guest chemistry and functionalization", bioZh: "开展功能分子识别材料研究。", bioEn: "Works on functional molecular recognition materials." }
   ],
   msc: [
-    { name: "陈贺", enName: "He Chen", email: "chenhe@wangming-lab.com", focusZh: "发光超分子材料", focusEn: "Luminescent supramolecular materials", bioZh: "研究发光性质调控与机制。", bioEn: "Studies luminescence tuning and mechanisms." },
-    { name: "李得胜", enName: "Desheng Li", email: "lidesheng@wangming-lab.com", focusZh: "超分子识别与分离", focusEn: "Supramolecular recognition and separation", bioZh: "关注复杂体系选择性分离。", bioEn: "Focuses on selective separation in complex systems." },
-    { name: "凌雨桐", enName: "Yutong Ling", email: "lingyutong@wangming-lab.com", focusZh: "可控分子堆叠", focusEn: "Controllable molecular stacking", bioZh: "研究堆叠构型与功能关系。", bioEn: "Studies stack conformation-function relationships." },
-    { name: "杨旭", enName: "Xu Yang", email: "yangxu@wangming-lab.com", focusZh: "多孔超分子组装", focusEn: "Porous supramolecular assemblies", bioZh: "探索高比表面积超分子体系。", bioEn: "Explores high-surface-area supramolecular systems." },
-    { name: "甘鑫", enName: "Xin Gan", email: "ganxin@wangming-lab.com", focusZh: "功能分子材料设计", focusEn: "Functional molecular material design", bioZh: "开展结构导向功能设计研究。", bioEn: "Works on structure-oriented functional design." }
+    { name: "陈贺", enName: "He Chen", email: "chenhe24@mails.jlu.edu.cn", focusZh: "发光超分子材料", focusEn: "Luminescent supramolecular materials", bioZh: "研究发光性质调控与机制。", bioEn: "Studies luminescence tuning and mechanisms." },
+    { name: "李得胜", enName: "Desheng Li", email: "dsli24@mails.jlu.edu.cn", focusZh: "超分子识别与分离", focusEn: "Supramolecular recognition and separation", bioZh: "关注复杂体系选择性分离。", bioEn: "Focuses on selective separation in complex systems." },
+    { name: "凌雨桐", enName: "Yutong Ling", email: "lingyt25@mails.jlu.edu.cn", focusZh: "可控分子堆叠", focusEn: "Controllable molecular stacking", bioZh: "研究堆叠构型与功能关系。", bioEn: "Studies stack conformation-function relationships." },
+    { name: "杨旭", enName: "Xu Yang", email: "yangx25@mails.jlu.edu.cn", focusZh: "多孔超分子组装", focusEn: "Porous supramolecular assemblies", bioZh: "探索高比表面积超分子体系。", bioEn: "Explores high-surface-area supramolecular systems." },
+    { name: "甘鑫", enName: "Xin Gan", email: "ganxin25@mails.jlu.edu.cn", focusZh: "功能分子材料设计", focusEn: "Functional molecular material design", bioZh: "开展结构导向功能设计研究。", bioEn: "Works on structure-oriented functional design." }
   ],
   alumni: [
     { name: "马建军", enName: "Jianjun Ma", destinationZh: "已毕业", destinationEn: "Graduated" },
@@ -219,6 +252,7 @@ const PAPER_DATA = [
       keywords: "supramolecular recognition; metal-ion selectivity; intramolecular interaction"
     },
     source: "#"
+    ,tags: ["金属离子识别", "超分子化学", "主客体相互作用"]
   },
   {
     id: "paper-2023-01",
@@ -238,6 +272,7 @@ const PAPER_DATA = [
       keywords: "MOF; photocatalysis; CO2 reduction"
     },
     source: "#"
+    ,tags: ["MOF", "光催化", "CO2还原"]
   },
   {
     id: "paper-2023-02",
@@ -257,6 +292,7 @@ const PAPER_DATA = [
       keywords: "metallo-supramolecule; chromophore arrangement; photophysics"
     },
     source: "#"
+    ,tags: ["金属超分子", "发色团", "光物理"]
   },
   {
     id: "paper-2022-01",
@@ -276,6 +312,7 @@ const PAPER_DATA = [
       keywords: "single-atom catalysis; nanozyme; synergy"
     },
     source: "#"
+    ,tags: ["单原子催化", "纳米酶", "协同效应"]
   },
   {
     id: "paper-2022-02",
@@ -295,6 +332,7 @@ const PAPER_DATA = [
       keywords: "macrocycle; coordination self-assembly; conformation control"
     },
     source: "#"
+    ,tags: ["宏环", "配位自组装", "构型调控"]
   },
   {
     id: "paper-2021-01",
@@ -314,6 +352,7 @@ const PAPER_DATA = [
       keywords: "supramolecular cage; conformational control; dissymmetrical modulation"
     },
     source: "#"
+    ,tags: ["超分子笼", "构象控制", "不对称调控"]
   }
 ];
 
@@ -321,3 +360,23 @@ const FEATURED = {
   paperId: "paper-2024-01",
   members: ["王绍志", "郭梓腾", "陈贺"]
 };
+
+const PI_DATA = {
+  photo: "./assets/members/王明.jpg",
+  logo: "./assets/logo.png"
+};
+
+const HERO_SLIDES = [
+  {
+    newsId: "news-20260320-1",
+    accent: "信息架构"
+  },
+  {
+    newsId: "news-20260320-2",
+    accent: "成员建设"
+  },
+  {
+    newsId: "news-20260320-3",
+    accent: "学术传播"
+  }
+];

@@ -35,6 +35,16 @@
         <h2 data-i18n="papersTitle">文章信息</h2>
         <p data-i18n="papersSub">点击文章进入独立详情页</p>
       </div>
+      <section class="filter-panel">
+        <div class="search-box">
+          <label class="search-label" data-i18n="searchTitle">站内检索</label>
+          <input id="paperSearch" class="search-input" type="search" data-i18n-placeholder="searchPlaceholderPapers" placeholder="搜索论文题目、作者、期刊" />
+        </div>
+        <div>
+          <p class="search-label" data-i18n="tagTitle">学术标签</p>
+          <div id="paperTags" class="tag-row"></div>
+        </div>
+      </section>
       <div id="paperList" class="outputs-list"></div>
     </main>
 

@@ -31,11 +31,13 @@ function renderNewsDetail() {
   const paragraphs = (d.detail || []).map((p) => `<p>${p}</p>`).join("");
   const prev = idx > 0 ? SITE_NEWS[idx - 1] : null;
   const next = idx < SITE_NEWS.length - 1 ? SITE_NEWS[idx + 1] : null;
+  const tags = (item.tags || []).map((tag) => `<span class="meta-tag">${tag}</span>`).join("");
 
   root.innerHTML = `
     <p class="meta">${item.date}</p>
     <h2>${d.title}</h2>
     <p>${d.desc}</p>
+    <div class="meta-tags">${tags}</div>
     ${paragraphs}
     <div class="paper-actions">
       <a class="output-source-btn" href="./news.html">${t("backNewsList")}</a>

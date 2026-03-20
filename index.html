@@ -39,12 +39,49 @@
     </header>
 
     <main>
-      <section class="hero container">
-        <p class="hero-tag">JILIN UNIVERSITY · SUPRAMOLECULAR CHEMISTRY</p>
-        <h1 data-i18n="heroTitle">王明课题组</h1>
-        <p class="hero-desc" data-i18n="heroDesc">
-          研究方向：金属有机笼的精准构筑及叠层超分子的性质与功能。
-        </p>
+      <section class="hero-shell">
+        <div class="container hero hero-enhanced">
+          <section class="hero-main">
+            <div class="lab-mark">
+              <div class="lab-logo-wrap">
+                <img id="labLogo" class="lab-logo" src="./assets/logo.png" alt="课题组 Logo" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <span class="lab-logo-fallback" data-i18n="logoLabel">课题组 Logo</span>
+              </div>
+              <div>
+                <p class="hero-tag" data-i18n="heroBadge">吉林大学 · 超分子化学</p>
+                <h1 data-i18n="heroTitle">王明课题组</h1>
+                <p class="hero-desc" data-i18n="heroDesc">
+                  研究方向：金属有机笼的精准构筑及叠层超分子的性质与功能。
+                </p>
+              </div>
+            </div>
+
+            <article class="pi-card">
+              <div class="pi-photo-wrap">
+                <img id="piPhoto" class="pi-photo" src="./assets/members/王明.jpg" alt="王明 教授" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <span class="pi-photo-fallback">王</span>
+              </div>
+              <div class="pi-content">
+                <p class="pi-kicker" data-i18n="piTitle">课题组负责人</p>
+                <h2 data-i18n="piName">王明 教授</h2>
+                <p data-i18n="piDesc">长期从事金属有机笼精准构筑、叠层超分子组装及功能应用研究，欢迎对超分子化学、配位自组装、分子识别和功能材料感兴趣的同学加入。</p>
+                <a class="output-source-btn" href="./members.html" data-i18n="piBtn">查看成员与简介</a>
+              </div>
+            </article>
+          </section>
+
+          <aside class="hero-carousel">
+            <div class="carousel-head">
+              <p class="search-label" data-i18n="carouselTitle">焦点新闻</p>
+            </div>
+            <div class="carousel-frame">
+              <button class="carousel-arrow carousel-arrow-left" id="carouselPrev" type="button" aria-label="Previous slide">‹</button>
+              <div id="heroSlides" class="carousel-slides"></div>
+              <button class="carousel-arrow carousel-arrow-right" id="carouselNext" type="button" aria-label="Next slide">›</button>
+            </div>
+            <div id="heroDots" class="carousel-dots"></div>
+          </aside>
+        </div>
       </section>
 
       <section class="section container">
