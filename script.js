@@ -40,6 +40,48 @@ function renderFeatured() {
   }
 }
 
+function renderIntro() {
+  const whyJoin = document.getElementById("whyJoinList");
+  if (whyJoin) {
+    whyJoin.innerHTML = LAB_HIGHLIGHTS[currentLang]
+      .map((item) => `<li>${item}</li>`)
+      .join("");
+  }
+}
+
+function renderResearch() {
+  const grid = document.getElementById("researchGrid");
+  if (!grid) return;
+  grid.innerHTML = RESEARCH_AREAS.map((item) => {
+    const d = item[currentLang];
+    return `<article class="card research-card"><p class="meta">${d.title}</p><p>${d.desc}</p></article>`;
+  }).join("");
+}
+
+function renderEquipment() {
+  const grid = document.getElementById("equipmentGrid");
+  if (!grid) return;
+  grid.innerHTML = EQUIPMENT_DATA.map((item) => {
+    const d = item[currentLang];
+    return `<article class="card equipment-card"><h3>${d.title}</h3><p>${d.desc}</p></article>`;
+  }).join("");
+}
+
+function renderRecruitment() {
+  const target = document.getElementById("joinTargetList");
+  const process = document.getElementById("joinProcessList");
+  if (target) {
+    target.innerHTML = RECRUITMENT_DATA[currentLang].targets
+      .map((item) => `<li>${item}</li>`)
+      .join("");
+  }
+  if (process) {
+    process.innerHTML = RECRUITMENT_DATA[currentLang].process
+      .map((item) => `<li>${item}</li>`)
+      .join("");
+  }
+}
+
 function updateCarousel() {
   const slides = document.querySelectorAll(".carousel-slide");
   const dots = document.querySelectorAll(".carousel-dot");
@@ -63,7 +105,7 @@ function renderCarousel() {
     const active = index === activeSlide ? " active" : "";
     return `
       <article class="carousel-slide${active}">
-        <p class="carousel-accent">${item.accent}</p>
+        <p class="carousel-accent">${item[currentLang] || item.accent}</p>
         <h3>${d.title}</h3>
         <p>${d.desc}</p>
         <div class="meta-tags">${(news.tags || []).map((tag) => `<span class="meta-tag">${tag}</span>`).join("")}</div>
@@ -115,6 +157,13 @@ function setupCarouselControls() {
   if (next) next.addEventListener("click", () => moveSlide(1));
 }
 
+function setupAssets() {
+  const logo = document.getElementById("labLogo");
+  const piPhoto = document.getElementById("piPhoto");
+  if (logo && PI_DATA.logo) logo.src = PI_DATA.logo;
+  if (piPhoto && PI_DATA.photo) piPhoto.src = PI_DATA.photo;
+}
+
 function setupLangButtons() {
   document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -123,6 +172,10 @@ function setupLangButtons() {
       currentLang = lang;
       localStorage.setItem("wm-lab-lang", currentLang);
       applyLang();
+      renderIntro();
+      renderResearch();
+      renderEquipment();
+      renderRecruitment();
       renderNews();
       renderFeatured();
       renderCarousel();
@@ -130,10 +183,15 @@ function setupLangButtons() {
   });
 }
 
-document.getElementById("year").textContent = `© ${new Date().getFullYear()}`;
+document.getElementById("year").textContent = `${new Date().getFullYear()}`;
+setupAssets();
 setupLangButtons();
 setupCarouselControls();
 applyLang();
+renderIntro();
+renderResearch();
+renderEquipment();
+renderRecruitment();
 renderNews();
 renderFeatured();
 renderCarousel();

@@ -53,6 +53,10 @@
                 <p class="hero-desc" data-i18n="heroDesc">
                   研究方向：金属有机笼的精准构筑及叠层超分子的性质与功能。
                 </p>
+                <div class="hero-actions">
+                  <a class="hero-btn hero-btn-primary" href="#lab-intro" data-i18n="heroBtnAbout">了解课题组</a>
+                  <a class="hero-btn hero-btn-secondary" href="#join-us" data-i18n="heroBtnJoin">报考与联系</a>
+                </div>
               </div>
             </div>
 
@@ -65,7 +69,10 @@
                 <p class="pi-kicker" data-i18n="piTitle">课题组负责人</p>
                 <h2 data-i18n="piName">王明 教授</h2>
                 <p data-i18n="piDesc">长期从事金属有机笼精准构筑、叠层超分子组装及功能应用研究，欢迎对超分子化学、配位自组装、分子识别和功能材料感兴趣的同学加入。</p>
-                <a class="output-source-btn" href="./members.html" data-i18n="piBtn">查看成员与简介</a>
+                <div class="paper-actions">
+                  <a class="output-source-btn" href="./members.html" data-i18n="piBtn">查看成员与简介</a>
+                  <a class="output-source-btn" href="#join-us" data-i18n="piRecruitBtn">联系招生信息</a>
+                </div>
               </div>
             </article>
           </section>
@@ -82,6 +89,43 @@
             <div id="heroDots" class="carousel-dots"></div>
           </aside>
         </div>
+      </section>
+
+      <section id="lab-intro" class="section container">
+        <div class="section-head">
+          <h2 data-i18n="introTitle">课题组介绍</h2>
+          <p data-i18n="introSub">面向报考同学的第一站信息</p>
+        </div>
+        <div class="intro-layout">
+          <article class="card intro-card">
+            <p class="search-label" data-i18n="introLabel">研究定位</p>
+            <h3 data-i18n="introHeadline">聚焦超分子化学前沿问题与功能体系构筑</h3>
+            <p data-i18n="introBody">
+              课题组依托吉林大学平台，围绕金属有机笼、叠层超分子、主客体识别与功能材料开展系统研究，
+              强调从分子设计、可控组装到性质调控与应用探索的完整科研训练。
+            </p>
+          </article>
+          <article class="card recruitment-card">
+            <p class="search-label" data-i18n="whyJoinTitle">为什么选择我们</p>
+            <ul id="whyJoinList" class="feature-list"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="research-directions" class="section container">
+        <div class="section-head">
+          <h2 data-i18n="researchTitle">研究方向</h2>
+          <p data-i18n="researchSub">聚焦结构构筑、功能调控与交叉应用</p>
+        </div>
+        <div id="researchGrid" class="research-grid"></div>
+      </section>
+
+      <section id="equipment" class="section container">
+        <div class="section-head">
+          <h2 data-i18n="equipmentTitle">仪器设备</h2>
+          <p data-i18n="equipmentSub">不仅有设备，更有完整表征与训练场景</p>
+        </div>
+        <div id="equipmentGrid" class="equipment-grid"></div>
       </section>
 
       <section class="section container">
@@ -113,6 +157,23 @@
           <article class="entry-card">
             <h3 data-i18n="featureMember">成员速览</h3>
             <div id="featuredMembers"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="join-us" class="section container">
+        <div class="section-head">
+          <h2 data-i18n="joinTitle">欢迎报考</h2>
+          <p data-i18n="joinSub">如果你对超分子化学与分子组装研究感兴趣，欢迎联系我们</p>
+        </div>
+        <div class="join-grid">
+          <article class="card join-card">
+            <p class="search-label" data-i18n="joinCardTitle">我们期待的同学</p>
+            <ul id="joinTargetList" class="feature-list"></ul>
+          </article>
+          <article class="card join-card">
+            <p class="search-label" data-i18n="joinProcessTitle">加入后的成长路径</p>
+            <ul id="joinProcessList" class="feature-list"></ul>
           </article>
         </div>
       </section>

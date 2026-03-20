@@ -9,12 +9,29 @@
     heroBadge: "吉林大学 · 超分子化学",
     heroTitle: "王明课题组",
     heroDesc: "研究方向：金属有机笼的精准构筑及叠层超分子的性质与功能。",
+    heroBtnAbout: "了解课题组",
+    heroBtnJoin: "报考与联系",
     piTitle: "课题组负责人",
     piName: "王明 教授",
     piDesc: "长期从事金属有机笼精准构筑、叠层超分子组装及功能应用研究，欢迎对超分子化学、配位自组装、分子识别和功能材料感兴趣的同学加入。",
     piBtn: "查看成员与简介",
+    piRecruitBtn: "联系招生信息",
     carouselTitle: "焦点新闻",
     logoLabel: "课题组 Logo",
+    introTitle: "课题组介绍",
+    introSub: "面向报考同学的第一站信息",
+    introLabel: "研究定位",
+    introHeadline: "聚焦超分子化学前沿问题与功能体系构筑",
+    introBody: "课题组依托吉林大学平台，围绕金属有机笼、叠层超分子、主客体识别与功能材料开展系统研究，强调从分子设计、可控组装到性质调控与应用探索的完整科研训练。",
+    whyJoinTitle: "为什么选择我们",
+    researchTitle: "研究方向",
+    researchSub: "聚焦结构构筑、功能调控与交叉应用",
+    equipmentTitle: "仪器设备",
+    equipmentSub: "不仅有设备，更有完整表征与训练场景",
+    joinTitle: "欢迎报考",
+    joinSub: "如果你对超分子化学与分子组装研究感兴趣，欢迎联系我们",
+    joinCardTitle: "我们期待的同学",
+    joinProcessTitle: "加入后的成长路径",
     entryTitle: "功能入口",
     entrySub: "点击后进入独立页面",
     entryMembers: "成员介绍",
@@ -74,12 +91,29 @@
     heroBadge: "Jilin University · Supramolecular Chemistry",
     heroTitle: "Wang Ming Laboratory",
     heroDesc: "Research direction: precise construction of metal-organic cages and stacked supramolecular functions.",
+    heroBtnAbout: "About the Lab",
+    heroBtnJoin: "Join Us",
     piTitle: "Principal Investigator",
     piName: "Prof. Ming Wang",
     piDesc: "The lab focuses on precise construction of metal-organic cages, stacked supramolecular assemblies, and functional applications in recognition, catalysis, and responsive materials.",
     piBtn: "View Members",
+    piRecruitBtn: "Recruitment Info",
     carouselTitle: "Featured News",
     logoLabel: "Lab Logo",
+    introTitle: "About the Lab",
+    introSub: "A first-stop overview for prospective students",
+    introLabel: "Research Positioning",
+    introHeadline: "Exploring frontier problems in supramolecular chemistry and functional assemblies",
+    introBody: "Based at Jilin University, the lab studies metal-organic cages, stacked supramolecules, host-guest recognition, and functional materials, with full-cycle training from molecular design to controlled assembly, property regulation, and application exploration.",
+    whyJoinTitle: "Why Join Us",
+    researchTitle: "Research Directions",
+    researchSub: "Bridging structural construction, functional regulation, and applications",
+    equipmentTitle: "Instrumentation",
+    equipmentSub: "Not just equipment, but complete training and characterization scenarios",
+    joinTitle: "Join the Lab",
+    joinSub: "If you are excited by supramolecular chemistry and molecular assembly, we would love to hear from you.",
+    joinCardTitle: "Who We Hope to Recruit",
+    joinProcessTitle: "How You Will Grow Here",
     entryTitle: "Entry Points",
     entrySub: "Click to enter standalone pages",
     entryMembers: "Members",
@@ -359,6 +393,120 @@ const PAPER_DATA = [
 const FEATURED = {
   paperId: "paper-2024-01",
   members: ["王绍志", "郭梓腾", "陈贺"]
+};
+
+const LAB_HIGHLIGHTS = {
+  zh: [
+    "研究方向前沿，聚焦金属有机笼与叠层超分子体系。",
+    "强调结构设计、谱学表征、理论分析与功能探索的综合训练。",
+    "鼓励学生参与论文写作、学术汇报、会议交流与国际化视野培养。"
+  ],
+  en: [
+    "Frontier research on metal-organic cages and stacked supramolecular systems.",
+    "Integrated training across molecular design, spectroscopy, structural analysis, and functional exploration.",
+    "Strong encouragement for paper writing, presentations, conference exchange, and international academic vision."
+  ]
+};
+
+const RESEARCH_AREAS = [
+  {
+    key: "direction-1",
+    zh: {
+      title: "金属有机笼的精准构筑",
+      desc: "通过配体设计、金属节点调控与自组装路径优化，实现复杂笼状结构的精准构筑。"
+    },
+    en: {
+      title: "Precise Construction of Metal-Organic Cages",
+      desc: "Ligand design, metal-node control, and assembly-pathway optimization for precision cage construction."
+    }
+  },
+  {
+    key: "direction-2",
+    zh: {
+      title: "叠层超分子的结构调控",
+      desc: "围绕多重弱相互作用与堆叠构型演化，研究超分子体系的构象、稳定性与功能响应。"
+    },
+    en: {
+      title: "Structural Control of Stacked Supramolecules",
+      desc: "Understanding conformation, stability, and responsive behavior through multiple weak interactions and stacking evolution."
+    }
+  },
+  {
+    key: "direction-3",
+    zh: {
+      title: "主客体识别与分子功能化",
+      desc: "发展高选择性识别体系，并将其拓展到传感、分离和功能材料等方向。"
+    },
+    en: {
+      title: "Host-Guest Recognition and Functionalization",
+      desc: "Developing high-selectivity recognition systems for sensing, separation, and functional materials."
+    }
+  },
+  {
+    key: "direction-4",
+    zh: {
+      title: "超分子功能应用探索",
+      desc: "面向光电、催化、响应材料等应用场景，建立结构与功能的对应关系。"
+    },
+    en: {
+      title: "Functional Applications of Supramolecular Systems",
+      desc: "Building structure-function relationships toward photonic, catalytic, and responsive-material applications."
+    }
+  }
+];
+
+const EQUIPMENT_DATA = [
+  {
+    zh: { title: "核磁共振谱仪", desc: "用于分子结构确认、主客体作用分析与组装过程跟踪。" },
+    en: { title: "NMR Spectroscopy", desc: "For structural verification, host-guest analysis, and monitoring of assembly processes." }
+  },
+  {
+    zh: { title: "高分辨质谱", desc: "支持超分子组装体组成分析、分子量确认与复杂体系表征。" },
+    en: { title: "High-Resolution Mass Spectrometry", desc: "Supports composition analysis, molecular-weight confirmation, and complex-system characterization." }
+  },
+  {
+    zh: { title: "单晶 X 射线衍射", desc: "解析关键组装体空间结构，为精准构筑研究提供核心证据。" },
+    en: { title: "Single-Crystal X-ray Diffraction", desc: "Reveals key solid-state structures and supports precision-assembly studies." }
+  },
+  {
+    zh: { title: "紫外-可见与荧光光谱", desc: "用于研究电子跃迁、发光行为及刺激响应特征。" },
+    en: { title: "UV-Vis and Fluorescence Spectroscopy", desc: "Used to probe electronic transitions, emission behavior, and stimuli-responsive features." }
+  },
+  {
+    zh: { title: "电化学分析平台", desc: "支撑功能材料的氧化还原特性与电子过程研究。" },
+    en: { title: "Electrochemical Analysis Platform", desc: "Supports studies of redox behavior and electron-transfer processes in functional systems." }
+  },
+  {
+    zh: { title: "多维表征共享平台", desc: "依托校内共享平台获取结构、形貌与性能的多尺度信息。" },
+    en: { title: "Shared Multi-Modal Characterization Platform", desc: "Provides multi-scale information on structure, morphology, and performance through shared facilities." }
+  }
+];
+
+const RECRUITMENT_DATA = {
+  zh: {
+    targets: [
+      "欢迎化学、材料、药学及相关专业背景同学报考。",
+      "具备扎实实验兴趣、较强责任心与主动学习意识者优先。",
+      "欢迎希望在学术研究、论文写作和学术交流方面获得系统训练的同学加入。"
+    ],
+    process: [
+      "从文献阅读、组会汇报到独立课题推进，逐步建立科研能力。",
+      "通过课题训练掌握分子设计、合成表征、数据分析与论文表达。",
+      "鼓励参与学术会议、交叉合作与高水平成果产出。"
+    ]
+  },
+  en: {
+    targets: [
+      "Applicants from chemistry, materials, pharmacy, and related disciplines are welcome.",
+      "We value strong experimental interest, responsibility, and active learning habits.",
+      "Students seeking systematic training in research, paper writing, and academic communication are especially encouraged."
+    ],
+    process: [
+      "Training grows from literature reading and group presentations to independent project development.",
+      "Students build skills in molecular design, synthesis, characterization, data analysis, and scientific writing.",
+      "Conference participation, interdisciplinary collaboration, and high-level outputs are strongly encouraged."
+    ]
+  }
 };
 
 const PI_DATA = {
